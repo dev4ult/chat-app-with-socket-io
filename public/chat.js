@@ -135,7 +135,7 @@ socket.on('receive-message', (username, message) => {
 const roomNameInput = document.querySelector('#room-name-input');
 const joinRoomBtn = document.querySelector('#join-room-btn');
 
-joinRoomBtn.addEventListener('click', () => {
+function joinRoom(username, room) {
   if (!username) {
     alert('Please input your name first');
     return;
@@ -156,6 +156,16 @@ joinRoomBtn.addEventListener('click', () => {
     socket.emit('send-join-notif', username, room);
     roomNameInput.value = '';
   }
+}
+
+roomNameInput.addEventListener('keypress', (event) => {
+  if (event.key == 'Enter') {
+    joinRoom(username, room);
+  }
+});
+
+joinRoomBtn.addEventListener('click', () => {
+  joinRoom(username, room);
 });
 
 socket.on('join-room-notif', (username, room) => {
