@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Chat-App</title>
     <link rel="icon" href="img/logo/join-room.svg" />
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -38,7 +39,8 @@
     </div>
     <main class="flex flex-col items-center justify-center h-screen">
       <h1 class="font-bold uppercase text-3xl max-w-xs text-center text-black">Chat App With Socket.IO</h1>
-      <div id="chat-app" class="border-2 border-black w-[95vw] max-w-[280px] p-1 my-4">
+      <h2 class="text-xl italic font-semibold my-3">By <a href="https://github.com/dev4ult" target="_blank" class="underline text-black">dev4ult</a></h2>
+      <div id="chat-app" class="border-2 border-black w-[95vw] max-w-[280px] p-1">
         <div class="flex items-center">
           <div id="display-room-name" class="p-1 w-fit">
             <p id="room-name" class="font-semibold bg-black px-2 mb-1 text-white w-fit">Public</p>
@@ -66,7 +68,10 @@
           </div>
         </div>
       </div>
-      <h2 class="text-xl italic font-semibold">By <a href="https://github.com/dev4ult" target="_blank" class="underline text-black">dev4ult</a></h2>
+      <div id="user-list" class="max-w-xs mt-3">
+        <h2 class="font-bold text-xl">Connected Users</h2>
+        <ul class="flex flex-wrap justify-center"></ul>
+      </div>
     </main>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./chat.js"></script>

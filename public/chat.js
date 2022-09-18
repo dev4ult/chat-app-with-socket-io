@@ -1,4 +1,5 @@
-const socket = io.connect('https://web-chat-app-socket-io.herokuapp.com/');
+// const socket = io.connect('https://web-chat-app-socket-io.herokuapp.com/');
+const socket = io.connect('http://localhost:3000');
 
 const inputNameBox = document.querySelector('#input-name-box');
 
@@ -6,6 +7,15 @@ const usernameInput = document.querySelector('#username-input');
 
 socket.on('connect', () => {
   usernameInput.focus();
+});
+
+const userListContainer = document.querySelector('#user-list ul');
+
+socket.on('res-users', (users) => {
+  userListContainer.innerHTML = '';
+  users.forEach((user) => {
+    userListContainer.innerHTML += `<li class='font-semibold border-2 border-black px-2'>${user.name}</li>`;
+  });
 });
 
 function submitName(username, room) {
@@ -21,6 +31,7 @@ function submitName(username, room) {
   inputNameBox.classList.add('hidden');
 
   displayNotification(`You have joined the ${room} room`);
+  socket.emit('add-user', username, room);
   socket.emit('create-room', room);
   socket.emit('send-join-notif', username, room);
   textMessageInput.focus();
@@ -136,7 +147,7 @@ joinRoomBtn.addEventListener('click', () => {
   if (room) {
     roomName.textContent = room;
     displayNotification(`You have joined the ${room} room`);
-    socket.emit('new-room', oldRoom, room);
+    socket.emit('new-room', username, oldRoom, room);
     socket.emit('send-join-notif', username, room);
     roomNameInput.value = '';
   }
@@ -144,5 +155,15 @@ joinRoomBtn.addEventListener('click', () => {
 
 socket.on('join-room-notif', (username, room) => {
   displayNotification(`<b><i>${username}</i></b> has joined the ${room} room`);
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+});
+
+socket.on('leave-room-notif', (username) => {
+  displayNotification(`<b><i>${username}</i></b> has left this room`);
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+});
+
+socket.on('res-disc-username', (username) => {
+  displayNotification(`<b><i>${username}</i></b> has disconnected`);
   messageContainer.scrollTop = messageContainer.scrollHeight;
 });
