@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="emerald">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Chat-App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      /* width */
+      ::-webkit-scrollbar {
+        width: 2px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: black;
+      }
+    </style>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="font-archivo">
+    <div id="input-name-box" class="card flex-row text-neutral-content rounded-none fixed top-0 left-0 right-0 bottom-0 items-center justify-center bg-black/30">
+      <div class="card-body items-center text-center bg-black w-fit flex-grow-0 flex-shrink">
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text text-white font-semibold">What is your name?</span>
+          </label>
+          <input id="username-input" type="text" placeholder="Type here..." class="input input-sm input-bordered w-full max-w-xs text-black rounded-none" />
+        </div>
+        <div class="card-actions self-end">
+          <button id="submit-name-btn" class="btn btn-outline outline-white text-white btn-sm rounded-none normal-case" name="submit-name">Submit</button>
+        </div>
+      </div>
+    </div>
+    <main class="flex flex-col items-center justify-center h-screen">
+      <h1 class="font-bold uppercase text-3xl max-w-xs text-center text-black">Chat App With Socket.IO</h1>
+      <div id="chat-app" class="border-2 border-black w-[95vw] max-w-[280px] p-1 my-4">
+        <div class="flex items-center">
+          <div id="display-room-name" class="p-1 w-fit">
+            <p id="room-name" class="font-semibold bg-black px-2 mb-1 text-white w-fit">Public</p>
+            <hr class="bg-black border-none h-0.5" />
+          </div>
+          <div class="form-control">
+            <div class="flex items-center w-full">
+              <input id="room-name-input" type="text" placeholder="Join a room..." class="input input-sm input-bordered rounded-none p-1 w-full border-black border-2 text-base" />
+              <button id="join-room-btn" class="btn btn-square btn-sm bg-black rounded-none p-1">
+                <img src="img/logo/join-room.svg" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="message-container" class="p-1 h-80 border-black border-2 overflow-y-auto"></div>
+        <div id="text-message-container" class="p-1">
+          <hr class="bg-black border-none h-0.5 mb-1" />
+          <div class="form-control">
+            <div class="flex items-center w-full">
+              <input id="message-text" type="text" placeholder="Message..." class="input input-sm input-bordered rounded-none p-1 w-full border-black border-2 text-base" />
+              <button id="send-message" class="btn btn-square btn-sm bg-black rounded-none p-1">
+                <img src="img/logo/send.svg" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="text-xl italic font-semibold">By <a href="https://github.com/dev4ult" target="_blank" class="underline text-black">dev4ult</a></h2>
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./chat.js"></script>
+  </body>
+</html>

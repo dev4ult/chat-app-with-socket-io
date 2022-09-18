@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "express": "^4.18.1",
+    "socket.io": "^4.5.2",
+    "socket.io-client": "^4.5.2"
+  },
+  "name": "learn-socket-io",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon app",
+    "dev": "concurrently npm:watch:*",
+    "watch:file": "nodemon server ejs,js,json,html",
+    "watch:tailwind": "npx tailwindcss -i ./src/css/input.css -o ./public/css/styles.css --watch"
+  },
+  "keywords": [],
+  "author": "Nibras Alyassar",
+  "license": "ISC",
+  "description": "Simple chat app with socket io",
+  "devDependencies": {
+    "autoprefixer": "^10.4.11",
+    "concurrently": "^7.4.0",
+    "daisyui": "^2.28.0",
+    "tailwindcss": "^3.1.8"
+  }
+}
