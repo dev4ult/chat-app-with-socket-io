@@ -1,4 +1,5 @@
-const socket = io.connect('https://web-chat-app-socket-io.herokuapp.com/');
+// const socket = io.connect('https://web-chat-app-socket-io.herokuapp.com/');
+const socket = io.connect('http://localhost:3000');
 
 const inputNameBox = document.querySelector('#input-name-box');
 
@@ -106,7 +107,7 @@ function createBubbleChat(username, message, senderSide) {
 
   bubbleChat.innerHTML = `
           <p class="text-sm  ${alignUsername}">${user}</p>
-          <p class="my-0 border-black border-2 px-2 py-0.5 ">${message}</p>
+          <p class="my-0 border-black border-2 px-2 py-0.5 break-all">${message}</p>
         `;
 
   return bubbleChat;
