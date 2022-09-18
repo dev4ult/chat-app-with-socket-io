@@ -69,6 +69,7 @@ const messageContainer = document.querySelector('#message-container');
 function displayNotification(msg) {
   const userNotif = `<p class="bg-black text-white px-2 py-0.5 mb-1">${msg}</p>`;
   messageContainer.innerHTML += userNotif;
+  messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
 function sendMessage(username, message, room) {
@@ -119,7 +120,7 @@ function createBubbleChat(username, message, senderSide) {
 
   bubbleChat.innerHTML = `
           <p class="text-sm  ${alignUsername}">${user}</p>
-          <p class="my-0 border-black border-2 px-2 py-0.5 break-all">${message}</p>
+          <p class="my-0 border-black border-2 px-2 py-0.5 break-words">${message}</p>
         `;
 
   return bubbleChat;
