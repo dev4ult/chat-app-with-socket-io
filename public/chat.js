@@ -155,30 +155,31 @@ function joinRoom(username, room) {
     socket.emit('new-room', username, oldRoom, room);
     socket.emit('send-join-notif', username, room);
     roomNameInput.value = '';
+    return room;
   }
 }
 
 roomNameInput.addEventListener('keypress', (event) => {
   if (event.key == 'Enter') {
-    joinRoom(username, room);
+    room = joinRoom(username, room);
   }
 });
 
 joinRoomBtn.addEventListener('click', () => {
-  joinRoom(username, room);
+  room = joinRoom(username, room);
 });
 
 socket.on('join-room-notif', (username, room) => {
-  displayNotification(`<b><i>${username}</i></b> has joined the ${room} room`);
+  displayNotification(`<b>${username}</b> has joined the ${room} room`);
   messageContainer.scrollTop = messageContainer.scrollHeight;
 });
 
 socket.on('leave-room-notif', (username) => {
-  displayNotification(`<b><i>${username}</i></b> has left this room`);
+  displayNotification(`<b>${username}</b> has left this room`);
   messageContainer.scrollTop = messageContainer.scrollHeight;
 });
 
 socket.on('res-disc-username', (username) => {
-  displayNotification(`<b><i>${username}</i></b> has disconnected`);
+  displayNotification(`<b>${username}</b> has disconnected`);
   messageContainer.scrollTop = messageContainer.scrollHeight;
 });
