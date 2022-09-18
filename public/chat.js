@@ -1,5 +1,4 @@
-// const socket = io.connect('https://web-chat-app-socket-io.herokuapp.com/');
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('https://web-chat-app-socket-io.herokuapp.com/');
 
 const inputNameBox = document.querySelector('#input-name-box');
 
