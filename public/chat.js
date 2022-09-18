@@ -59,6 +59,11 @@ usernameInput.addEventListener('keypress', (event) => {
   }
 });
 
+socket.on('user-found', (username) => {
+  alert(`${username} has been used already! Choose another name`);
+  window.location.href = 'https://web-chat-app-socket-io.herokuapp.com/';
+});
+
 const messageContainer = document.querySelector('#message-container');
 
 function displayNotification(msg) {

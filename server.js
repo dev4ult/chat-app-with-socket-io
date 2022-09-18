@@ -22,13 +22,19 @@ io.on('connection', (socket) => {
   io.emit('res-users', users);
 
   socket.on('add-user', (username, room) => {
-    users.push({
-      id: socket.id,
-      name: username,
-      room,
-    });
+    if (users.find((user) => user.name === username)) {
+      socket.emit('user-found', username);
+    } else {
+      users.push({
+        id: socket.id,
+        name: username,
+        room,
+      });
 
-    io.emit('res-users', users);
+      console.log(users);
+
+      io.emit('res-users', users);
+    }
   });
 
   socket.on('create-room', (room) => {
