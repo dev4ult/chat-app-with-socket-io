@@ -8,7 +8,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon app",
+    "start": "node server.js",
     "dev": "concurrently npm:watch:*",
     "watch:file": "nodemon server ejs,js,json,html",
     "watch:tailwind": "npx tailwindcss -i ./src/css/input.css -o ./public/css/styles.css --watch"
