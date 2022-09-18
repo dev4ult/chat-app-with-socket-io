@@ -33,19 +33,17 @@ const submitNameBtn = document.querySelector('#submit-name-btn');
 const roomName = document.querySelector('#room-name');
 
 let username = '';
-let room = '';
+let room = 'Public';
 
 const textMessageInput = document.querySelector('#message-text');
 
 submitNameBtn.addEventListener('click', (_) => {
-  room = 'Public';
   roomName.textContent = room;
   username = submitName(username, room);
 });
 
 usernameInput.addEventListener('keypress', (event) => {
   if (event.key == 'Enter') {
-    room = 'Public';
     roomName.textContent = room;
     username = submitName(username, room);
   }
