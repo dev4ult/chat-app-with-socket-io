@@ -18,7 +18,7 @@ socket.on('res-users', (users) => {
 });
 
 function submitName(username, room) {
-  username = usernameInput.value;
+  username = htmlspecialchars(usernameInput.value);
   if (!username) {
     alert('Please input your name first!');
     return;
@@ -88,7 +88,7 @@ function sendMessage(username, message, room) {
 }
 
 textMessageInput.addEventListener('keypress', (event) => {
-  const message = textMessageInput.value;
+  const message = htmlspecialchars(textMessageInput.value);
   if (event.key == 'Enter') {
     sendMessage(username, message, room);
   }
@@ -98,7 +98,7 @@ const sendMessageBtn = document.querySelector('#send-message');
 
 // send message
 sendMessageBtn.addEventListener('click', (_) => {
-  const message = textMessageInput.value;
+  const message = htmlspecialchars(textMessageInput.value);
   sendMessage(username, message, room);
 });
 
@@ -142,7 +142,7 @@ function joinRoom(username, room) {
   }
 
   const oldRoom = room;
-  room = roomNameInput.value;
+  room = htmlspecialchars(roomNameInput.value);
 
   if (room.length > 10) {
     alert('Room Name too long (Max Characters: 10)');
